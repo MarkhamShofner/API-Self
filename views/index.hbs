@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>heatmapr</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <!-- <script src="leaflet.js"></script>
+  <script src="script.js"></script>
+  <script src="js/models/location.js"></script> -->
+  <script src="soup.js"></script>
+
+</head>
+
+<body>
+
+
+  <div class="overlay">
+    <h1>heatmapr</h1>
+  </div>
+
+  <div class="user-action-overlay">
+
+      {{#if message}}
+      <div class="alert">{{message}}</div>
+      {{/if}}
+
+      <div id="loginPopup" class="authPopup">
+        <form method="post" action="/login">
+          <div class="form-group">
+            <button class="close">x</button>
+            <h3>Log In:</h3>
+            <label for="email">Email</label>
+            <input class="form-control" type="text" name="email" id="email">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Password</label>
+            <input class="form-control" type="password" name="password" id="password">
+          </div>
+
+          <input class="submit" type="submit">
+        </form>
+      </div>
+
+      <div id="signupPopup" class="authPopup">
+        <button class="close">x</button>
+        <form method="post" action="/signup">
+          <div class="form-group">
+            <h3>Sign Up:</h3>
+            <label for="email">Email</label>
+            <input class="form-control" type="text" name="email" id="email">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Password</label>
+            <input class="form-control" type="password" name="password" id="password">
+          </div>
+
+          <input class="submit" type="submit">
+        </form>
+      </div>
+
+  </div>
+
+  <div class="top-gradient">
+  <div class="top-bar">
+
+    <div class="logo">
+      <h1 class="logotext">heatmapr</h1>
+    </div>
+
+    <form class="search">
+      <input class="searchType" type="text" name="type" value="bars">
+    </form>
+
+    <div class="distancemeasurements">
+      <p>Average distance:</p>
+      <p class="averagedistance"></p>
+      <!-- <p>Total Distance:</p>
+      <p class="totaldistance"></p> -->
+    </div>
+
+    {{#if currentUser}}
+       <button id="logout" class="auth"><a href="/logout">Log out</a></button>
+     {{else}}
+       <button id="openLogin" class="auth">Log in</button>
+       <button id="openSignup" class="auth">Sign up</button>
+     {{/if}}
+
+  </div>
+  </div>
+
+
+  <!-- <div class="sidebar location">
+  </div> -->
+
+  <div id="map">
+  </div>
+
+  <img class="crosshairs" alt="crosshairs" src="http://i.imgur.com/Otlu2du.png" />
+
+</body>
+
+</html>
